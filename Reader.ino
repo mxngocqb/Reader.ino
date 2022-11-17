@@ -43,7 +43,7 @@ void loop() {
     Serial.print(RxBuffer);
     // Upload len sever.
     #ifdef SIOT_DATA
-//      core.updateData(URL_ID, RxBuffer, response, POST);
+     core.updateData(URL_ID, RxBuffer, response, POST);
     #endif
  }
 }

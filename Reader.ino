@@ -18,32 +18,34 @@ void setup() {
 #ifdef SERIAL_COMMUNICATION
   // start serial port at 9600 bps:
   Serial.begin(9600);
-  Serial.println("port ok");
+  Serial.println("Connect Port Succesful");
 #endif
 
 #ifdef SIOT_DATA  
   // Khởi tạo kết nối với máy chủ SIOT
-  Serial.println("Ket noi wifi");
   core.init();
+  Serial.println("Connect Wifi Succesful");
 #endif
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // Kích hoạt đèn của board
   digitalWrite(2, HIGH);
   delay(1000);
   digitalWrite(2, LOW);
   delay(1000);
   if (Serial.available()) {
-    String RxBuffer = "";
+    String TxBuffer = "";         // Lưu trữ chuỗi dữ liệu từ máy đọc thẻ.
+    // Khi nhận được tín hiệu từ 2 chân TX, RX (RS232) -> đọc dữ liệu là gán vào RxBuffer.
     while (Serial.available()) {
-      RxBuffer = Serial.readString();
+      TxBuffer = Serial.readString();
     }
+    // In ra màn hình ngoài.
     Serial.print("h =  ");
-    Serial.print(RxBuffer);
+    Serial.print(TxBuffer);
     // Upload len sever.
     #ifdef SIOT_DATA
-     core.updateData(URL_ID, RxBuffer, response, POST);
+     core.updateData(URL_ID, TxBuffer, response, POST); // Upload lên địa chỉ URL_ID nằm trên web siot.soict.ai
     #endif
  }
 }

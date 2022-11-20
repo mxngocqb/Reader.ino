@@ -9,7 +9,8 @@
 #endif
 
 String response;
-
+String RxBuffer; // Biến chữa dữ liệu đêmh
+String Modify; // tinh chỉnh lại dữ liệ
 void setup() {
   // put your setup code here, to run once:
   pinMode(2, OUTPUT);
@@ -18,34 +19,33 @@ void setup() {
 #ifdef SERIAL_COMMUNICATION
   // start serial port at 9600 bps:
   Serial.begin(9600);
-  Serial.println("Connect Port Succesful");
+  Serial.println("port ok");
 #endif
 
 #ifdef SIOT_DATA  
   // Khởi tạo kết nối với máy chủ SIOT
   core.init();
-  Serial.println("Connect Wifi Succesful");
+  Serial.println("Ket noi wifi");
+  core.updateData(URL_ID, "hê lô bà già", response, POST);
 #endif
+
 }
 
 void loop() {
-  // Kích hoạt đèn của board
+  // put your main code here, to run repeatedly:
   digitalWrite(2, HIGH);
   delay(1000);
   digitalWrite(2, LOW);
   delay(1000);
   if (Serial.available()) {
-    String TxBuffer = "";         // Lưu trữ chuỗi dữ liệu từ máy đọc thẻ.
-    // Khi nhận được tín hiệu từ 2 chân TX, RX (RS232) -> đọc dữ liệu là gán vào RxBuffer.
+    RxBuffer = "";
     while (Serial.available()) {
-      TxBuffer = Serial.readString();
+      RxBuffer = Serial.readString();
     }
-    // In ra màn hình ngoài.
+    Modify = RxBuffer.substring(1,9);
     Serial.print("h =  ");
-    Serial.print(TxBuffer);
+    Serial.print(Modify);
     // Upload len sever.
-    #ifdef SIOT_DATA
-     core.updateData(URL_ID, TxBuffer, response, POST); // Upload lên địa chỉ URL_ID nằm trên web siot.soict.ai
-    #endif
+    core.updateData(URL_ID, Modify, response, POST);
  }
 }

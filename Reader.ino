@@ -2,14 +2,13 @@
 #define SIOT_DATA              // Có gửi dữ liệu về server
 
 
-// #include "D:\HUST\Project I\src\Reader\src\SiotCore.h"
 #ifdef SIOT_DATA
   #include "src\SiotCore.h"
   SiotCore core;
 #endif
 
 String response;
-String RxBuffer; // Biến chữa dữ liệu đêmh
+String RxBuffer; // Biến chữa dữ liệu đêm
 String Modify; // tinh chỉnh lại dữ liệ
 void setup() {
   // put your setup code here, to run once:
@@ -19,14 +18,14 @@ void setup() {
 #ifdef SERIAL_COMMUNICATION
   // start serial port at 9600 bps:
   Serial.begin(9600);
-  Serial.println("port ok");
+  Serial.println("Port is connected");
 #endif
 
 #ifdef SIOT_DATA  
   // Khởi tạo kết nối với máy chủ SIOT
   core.init();
-  Serial.println("Ket noi wifi");
-  core.updateData(URL_ID, "hê lô bà già", response, POST);
+  Serial.println("Wifi is connected");
+  core.updateData(URL_ID, "Hello, you have successfully connected", response, POST);
 #endif
 
 }

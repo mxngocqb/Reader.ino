@@ -16,7 +16,7 @@
 #define Platform "Rev4"
 
 #define URL_ID "http://siot.soict.ai/api/devices/reader_rs232_to_rs485-2wunb/attributes/id-52a5e"
-//#define URL_TURNONTIME "http://siot.soict.ai/api/devices/hb20211223/attributes/turnontime-qmri2"
+#define URL_TANSUAT "http://siot.soict.ai/api/devices/reader_rs232_to_rs485-2wunb/attributes/tansuat-di8xa"
 //#define URL_EATING  "http://siot.soict.ai/api/devices/hb20211223/attributes/eating-j8ov5"
 //#define URL_DISTANCE  "http://siot.soict.ai/api/devices/hb20211223/attributes/distance-pz1q8"
 

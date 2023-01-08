@@ -19,13 +19,14 @@ void setup() {
   // start serial port at 9600 bps:
   Serial.begin(9600);
   Serial.println("Port is connected");
+  core.updateData(URL_STATE, "Port is connected", response, POST);
 #endif
 
 #ifdef SIOT_DATA  
   // Khởi tạo kết nối với máy chủ SIOT
   core.init();
   Serial.println("Wifi is connected");
-  core.updateData(URL_ID, "Hello, you have successfully connected", response, POST);
+  core.updateData(URL_STATE, "Hello, you have successfully connected", response, POST);
 #endif
 
 }

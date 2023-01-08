@@ -5,6 +5,7 @@
 #include "WiFiManager.h"
 #include "../Debug/Debug.h"
 #include <EEPROM.h>
+#define SSID_DEFAULT "SOICT_CORE_BOARD"
 class ConnectInternet
 {
 private:
@@ -12,6 +13,7 @@ private:
 public:
     char *ssid;
     char *pass;
+    
     ConnectInternet();
     ConnectInternet(char *ssid,char *pass);
     void setSSID(char *ssid);

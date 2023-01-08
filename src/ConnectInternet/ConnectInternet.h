@@ -12,7 +12,6 @@ private:
 public:
     char *ssid;
     char *pass;
-    
     ConnectInternet();
     ConnectInternet(char *ssid,char *pass);
     void setSSID(char *ssid);

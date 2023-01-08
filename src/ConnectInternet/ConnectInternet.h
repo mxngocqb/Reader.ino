@@ -5,7 +5,6 @@
 #include "WiFiManager.h"
 #include "../Debug/Debug.h"
 #include <EEPROM.h>
-#define SSID_DEFAULT "SOICT_CORE_BOARD"
 class ConnectInternet
 {
 private:
